@@ -9,6 +9,25 @@ module.exports = {
 
   attributes: {
 
+    nombre: {
+      type: 'string',
+      required: true
+    },
+    ciudadResidencia: {
+      type: 'string',
+      required: true
+    },
+    fechaNacimiento: {
+      type: 'date',
+      required: true
+    },
+
+    idBorrachera: {
+      // Model-> es el nombre de la tabla padre
+      model: 'Borrachera',
+      // Required es OPCIONAL si no queremos registros huerfanos de raza
+      //required: true
+    }
   }
 };
 
