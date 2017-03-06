@@ -11,15 +11,20 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/ListarUsuario">Listar Usuarios</a></li>
-          <li><a href="/CrearUsuario">Crear Usuario</a></li>
-          <li><a href="/CrearBorrachera">Crear Borrachera</a></li>
-          <li><a href="/ListarBorrachera">Listar Borracheras</a></li>
+          <li><a [routerLink]="['/home']">Home</a></li>
+          <li><a [routerLink]="['/home']">Listar Usuarios</a></li>
+          <li><a [routerLink]="['/home']">Crear Usuario</a></li>
+          <li><a [routerLink]="['/home']">Crear Borrachera</a></li>
+          <li><a [routerLink]="['/borrachera']">Listar Borracheras</a></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
   </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
 
