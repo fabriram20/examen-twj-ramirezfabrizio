@@ -12,44 +12,104 @@ import {NgForm} from "@angular/forms";
 export class UsuarioComponent implements OnInit {
 
   private _parametros:any;
-  usuarios=[];
   nuevoUsuario={};
+  usuarios=[];
+  borracheras=[];
 
-  constructor(private _activatedRoute: ActivatedRoute, private _http:Http, private _masterURL:MasterUrlService) { }
+  disabledButtons = {
+    NuevatiendaFormSubmitButton: false
+  }
+
+
+  constructor(private _activatedRoute: ActivatedRoute, private _http:Http, private _masterURL:MasterUrlService) {
+
+  }
 
   ngOnInit() {
     this._activatedRoute
       .params
       .subscribe(parametros=>{
         this._parametros = parametros;
-        this._http.get(this._masterURL.url+'Usuario?idBorrachera='+this._parametros.idBorrachera).subscribe(
+
+        this._http.get(this._masterURL.url + "Usuario").subscribe(
+        // this._http.get(this._masterURL.url+'Usuario?idBorrachera='+this._parametros.idBorrachera).subscribe(
           (res:Response)=>{
-            this.usuarios = res.json();
+            this.usuarios = res.json().map((value)=>{
+              value.formularioCerrado = true;
+              return value;
+            });;
           },
           (err)=>{
             console.log(err);
           }
-
         )
+
+        this._http.get(this._masterURL.url + "Borrachera").subscribe(
+          (res: Response) => {
+            this.borracheras = res.json()
+              .map((value)=>{
+                value.idformularioCerrado = true;
+                return value;
+              });
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
+
+
       })
   }
 
-  crearProducto(formulario: NgForm){
+  crearUsuario(formulario: NgForm){
     let usuario = {
       nombre:formulario.value.nombre,
       ciudadResidencia:formulario.value.ciudadResidencia,
       fechaNacimiento:formulario.value.fechaNacimiento,
-      idBorrachera:this._parametros.idBorrachera
+      idBorrachera:formulario.value.idBorrachera
     }
     this._http.post(this._masterURL.url+'Usuario', usuario).subscribe(
       (res:Response)=>{
         this.usuarios.push(res.json());
         this.nuevoUsuario={};
+        this.disabledButtons.NuevatiendaFormSubmitButton = false;
       },
       (err)=>{
         console.log(err)
+        this.disabledButtons.NuevatiendaFormSubmitButton = false;
       }
     )
   }
+
+  borrarUsuario(id:number) {
+
+    this._http.delete(this._masterURL.url + "Usuario/" + id).subscribe(
+      (res) => {
+        let usuarioBorrado=res.json();
+        this.usuarios = this.usuarios.filter(value=>usuarioBorrado.id!=value.id)
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  actualizarUsuario(usuario:any){
+    let parametros={
+      nombre: usuario.nombre,
+      ciudadResidencia: usuario.ciudadResidencia,
+      fechaNacimiento: usuario.fechaNacimiento
+    };
+    this._http.put(this._masterURL.url+"Usuario/"+usuario.id,parametros).subscribe(
+      (res:Response)=>{
+        usuario.formularioCerrado = !usuario.formularioCerrado;
+        console.log("Respuesta: ",res.json());
+      },
+      (err)=>{
+        console.log("Error: ",err)
+      }
+    )
+  }
+
 
 }

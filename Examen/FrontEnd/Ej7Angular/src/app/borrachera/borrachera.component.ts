@@ -35,7 +35,7 @@ export class BorracheraComponent implements OnInit {
 
   }
 
-  crearTienda(formulario: NgForm) {
+  crearBorrachera(formulario: NgForm) {
     this.disabledButtons.NuevatiendaFormSubmitButton = true;
     console.log(formulario);
     this._http.post(this._masterURL.url + "Borrachera", {
@@ -62,21 +62,21 @@ export class BorracheraComponent implements OnInit {
       );
   }
 
-  borrarTienda(id:number) {
+  borrarBorrachera(id:number) {
 
-    this._http.delete(this._masterURL.url + "Borrachera/" + id).subscribe(
-      (res) => {
-        let borracheraBorrada=res.json();
-        this.borracheras = this.borracheras.filter(value=>borracheraBorrada.id!=value.id)
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
+  this._http.delete(this._masterURL.url + "Borrachera/" + id).subscribe(
+    (res) => {
+      let borracheraBorrada=res.json();
+      this.borracheras = this.borracheras.filter(value=>borracheraBorrada.id!=value.id)
+    },
+    (err) => {
+      console.log(err);
+    }
+  )
 
-  }
+}
 
-  actualizarTienda(borrachera:any){
+  actualizarBorrachera(borrachera:any){
     let parametros={
       motivo: borrachera.motivo,
       latitud: borrachera.latitud,

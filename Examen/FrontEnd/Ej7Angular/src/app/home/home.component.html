@@ -5,20 +5,16 @@
   <div class="col-sm-6">
     <div class="jumbotron">
       <h1>Usuario</h1>
-      <p>Registrate para participar en las borracheras</p>
-      <p><a class="btn btn-primary btn-lg" href="/CrearUsuario" role="button">Registrar Usuario</a></p>
-      <p>Revisa la lista de usuario</p>
-      <p><a class="btn btn-primary btn-lg" href="/ListarUsuario" role="button">Listar Usuarios</a></p>
+      <p>Registrate para participar en las borracheras Y Revisa la lista de usuario</p>
+      <p><a class="btn btn-primary btn-lg" [routerLink]="['/usuario']" role="button">CRUD Usuario</a></p>
     </div>
   </div>
 
   <div class="col-sm-6">
     <div class="jumbotron">
       <h1>Borrachera</h1>
-      <p>Registra una Borrachera</p>
-      <p><a class="btn btn-primary btn-lg" href="/CrearBorrachera" role="button">Registrar Borrachera</a></p>
-      <p>Revisa la lista de Borracheras</p>
-      <p><a class="btn btn-primary btn-lg" href="/listarBorrachera" role="button">Listar Borrachera</a></p>
+      <p>Registra una Borrachera y Revisa la lista de Borracheras existentes</p>
+      <p><a class="btn btn-primary btn-lg" [routerLink]="['/borrachera']" role="button">CRUD Borrachera</a></p>
     </div>
   </div>
 </div>
