@@ -33,7 +33,7 @@
 
         </div>
         <button [disabled]="disabledButtons.NuevaTiendaFormSubmitButton||!NuevaTiendaForm.valid" type="submit"
-                class="btn btn-block btn-success">Crear Borrachera
+                class="btn btn-block btn-success" >Crear Borrachera
         </button>
       </form>
     </div>
@@ -70,7 +70,7 @@
           <button class="btn btn-block btn-danger" (click)="borrarTienda(borrachera.id)">Borrar</button>
         </div>
         <div class="col-sm-12">
-          <a [routerLink]="[borrachera.id,'producto']">Ir a Productos</a>
+          <a [routerLink]="[borrachera.id,'usuario']">Ir a Usuarios</a>
         </div>
       </div>
 
