@@ -7,7 +7,8 @@ import {UsuarioComponent} from "./usuario/usuario.component";
 export const routes: Routes = [
   {path: '', redirectTo:'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'borrachera', component: BorracheraComponent}
+  {path: 'borrachera', component: BorracheraComponent},
+  {path: 'usuario', component: UsuarioComponent}
 
   // ,
   // {path: 'borrachera/:idborrachera/usuario', component: UsuarioComponent}

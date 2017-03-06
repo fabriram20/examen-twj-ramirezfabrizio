@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row jumbotron">
+
     <div class="col-sm-12">
       <pre class="animated fadeInUp">
         {{nuevaTienda | json}}
       </pre>
     </div>
+
     <div class="col-sm-6">
       <form class="animated bounceIn" (ngSubmit)="crearTienda(NuevaTiendaForm)" #NuevaTiendaForm="ngForm">
         <div class="form-group">
