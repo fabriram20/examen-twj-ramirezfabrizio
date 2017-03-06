@@ -47,7 +47,8 @@
         <!--Usuarios Existentes-->
         <div class="text-center">
           <h3>ID: {{usuario.id}} {{usuario.nombre}}</h3>
-          <p>Ciudad: {{usuario.ciudadResidencia}} Cumple: {{usuario.fechaNacimiento}}°</p>
+          <p>Cumple: {{usuario.fechaNacimiento}}</p>
+          <p>Ciudad: {{usuario.ciudadResidencia}}</p>
         </div>
 
         <div class="row animated flipInX" [hidden]="!usuario.formularioCerrado">
@@ -77,6 +78,13 @@
               <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento"
                      name="fechaNacimiento"
                      [(ngModel)]="usuario.fechaNacimiento">
+              <label>Borrachera: </label>
+              <select class="form-control" name="idBorrachera" >
+                <option *ngFor="let borrachera of borracheras" value='{{borrachera.id}}'>
+                  {{borrachera.motivo}}
+                </option>
+              </select>
+              <br>
             </div>
 
             <button [disabled]="disabledButtons.NuevaTiendaFormSubmitButton||!NuevaTiendaForm.valid" type="submit"

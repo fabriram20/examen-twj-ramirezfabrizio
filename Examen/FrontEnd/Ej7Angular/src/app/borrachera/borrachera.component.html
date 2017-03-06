@@ -23,12 +23,12 @@
           <input required minlength="4" type="text" class="form-control" placeholder="Digite el motivo de la Borrachera"
                  name="motivo" [(ngModel)]="nuevaBorrachera.motivo" #nombre="ngModel" #nombreElm>
 
-          <label>Latitud (Donde Empezo)</label>
+          <label>Latitud (Donde Empezo 0°-180°)</label>
           <input type="number" class="form-control" placeholder="Ingrese Latitud donde Empezó" name="latitud" min="0"
                  max="180"
                  [(ngModel)]="nuevaBorrachera.latitud">
 
-          <label>Longitud (Donde Empezo)</label>
+          <label>Longitud (Donde Empezo 0°-180°)</label>
           <input type="number" class="form-control" placeholder="Ingrese Longitud donde Empezó" name="longitud" min="0"
                  max="180"
                  [(ngModel)]="nuevaBorrachera.longitud">
@@ -51,7 +51,7 @@
   <!--Actualizar y Borrar-->
 
   <div class="row jumbotron">
-    <h1>Lista de Borracheras</h1>
+    <h2>Lista de Borracheras</h2>
     <div class="col-sm-12 animated flipInX" *ngFor="let borrachera of borracheras">
       <!--<pre>-->
       <!--{{borrachera|json}}-->
@@ -72,9 +72,6 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-5">
           <button class="btn btn-block btn-danger" (click)="borrarBorrachera(borrachera.id)">Borrar</button>
-        </div>
-        <div class="col-sm-12">
-          <a [routerLink]="[borrachera.id,'usuario']">Ir a Usuarios</a>
         </div>
       </div>
 
