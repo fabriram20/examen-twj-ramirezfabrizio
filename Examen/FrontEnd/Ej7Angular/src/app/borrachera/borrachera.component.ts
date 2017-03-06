@@ -47,6 +47,7 @@ export class BorracheraComponent implements OnInit {
         (res) => {
           console.log('No hubo un error');
           console.log(res);
+
           this.borracheras.push(res.json());
           this.nuevaBorrachera = {};
           this.disabledButtons.NuevatiendaFormSubmitButton = false;
@@ -77,9 +78,9 @@ export class BorracheraComponent implements OnInit {
 
   actualizarTienda(borrachera:any){
     let parametros={
-      motivo: borrachera.value.motivo,
-      latitud: borrachera.value.latitud,
-      longitud: borrachera.value.longitud
+      motivo: borrachera.motivo,
+      latitud: borrachera.latitud,
+      longitud: borrachera.longitud
     };
     this._http.put(this._masterURL.url+"Borrachera/"+borrachera.id,parametros).subscribe(
       (res:Response)=>{

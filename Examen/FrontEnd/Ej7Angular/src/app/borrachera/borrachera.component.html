@@ -1,12 +1,17 @@
 <div class="container">
+
+  <!--Crear Borrachera-->
+
   <div class="row jumbotron">
 
-    <div class="col-sm-12">
-      <pre class="animated fadeInUp">
-        {{nuevaBorrachera | json}}
-      </pre>
-    </div>
+    <!--Previsualizar-->
+    <!--<div class="col-sm-12">-->
+      <!--<pre class="animated fadeInUp">-->
+        <!--{{nuevaBorrachera | json}}-->
+      <!--</pre>-->
+    <!--</div>-->
 
+    <!--Formulario crear-->
     <div class="col-sm-6">
       <form class="animated bounceIn" (ngSubmit)="crearTienda(NuevaTiendaForm)" #NuevaTiendaForm="ngForm">
         <div class="form-group">
@@ -19,11 +24,11 @@
                  name="motivo" [(ngModel)]="nuevaBorrachera.motivo" #nombre="ngModel" #nombreElm>
 
           <label>Latitud (Donde Empezo)</label>
-          <input type="number" class="form-control" placeholder="Ingrese Latitud donde Empezó" name="latitud" min="0" max="90"
+          <input type="number" class="form-control" placeholder="Ingrese Latitud donde Empezó" name="latitud" min="0" max="180"
                  [(ngModel)]="nuevaBorrachera.latitud">
 
           <label>Longitud (Donde Empezo)</label>
-          <input type="number" class="form-control" placeholder="Ingrese Longitud donde Empezó" name="longitud" min="0" max="90"
+          <input type="number" class="form-control" placeholder="Ingrese Longitud donde Empezó" name="longitud" min="0" max="180"
                  [(ngModel)]="nuevaBorrachera.longitud">
 
         </div>
@@ -32,61 +37,69 @@
         </button>
       </form>
     </div>
-
+    <!--Previsualizar form    -->
     <div class="col-sm-6">
-      <h1>{{nuevaBorrachera.nombre}}</h1>
-      <h1>{{nuevaBorrachera.latitud}}</h1>
-      <h1>{{nuevaBorrachera.longitud}}</h1>
+      <h2>Motivo: {{nuevaBorrachera.motivo}}</h2>
+      <h3>Latitud: {{nuevaBorrachera.latitud}}°</h3>
+      <h3>Longitud: {{nuevaBorrachera.longitud}}°</h3>
     </div>
-    <!--<div class="col-sm-12">-->
-    <!--<pre>-->
-    <!--{{tiendas | json}}-->
-    <!--</pre>-->
-    <!--</div>-->
 
   </div>
-  <div class="row">
-    <div class="col-sm-12 animated flipInX" *ngFor="let tienda of tiendas">
-      <pre>
-        {{tienda|json}}
-      </pre>
+
+  <!--Actualizar y Borrar-->
+
+  <div class="row jumbotron">
+    <div class="col-sm-12 animated flipInX" *ngFor="let borrachera of borracheras">
+      <!--<pre>-->
+        <!--{{borrachera|json}}-->
+      <!--</pre>-->
+
+      <!--borracheras Existentes-->
       <div class="text-center">
-        <h3>{{tienda.nombre}}</h3>
-        <p>ID: {{tienda.id}}</p>
+        <h3>ID: {{borrachera.id}} {{borrachera.motivo}}</h3>
+        <p>Latitud: {{borrachera.latitud}}° Longitud: {{borrachera.longitud}}°</p>
       </div>
-      <div class="row animated flipInX"  [hidden]="!tienda.formularioCerrado">
+
+      <div class="row animated flipInX"  [hidden]="!borrachera.formularioCerrado">
         <div class="col-sm-5">
-          <button class="btn btn-block btn-info" (click)="tienda.formularioCerrado = !tienda.formularioCerrado">Actualizar</button>
+          <button class="btn btn-block btn-info" (click)="borrachera.formularioCerrado = !borrachera.formularioCerrado">
+            Actualizar</button>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-5">
-          <button class="btn btn-block btn-danger" (click)="borrarTienda(tienda.id)">Borrar</button>
+          <button class="btn btn-block btn-danger" (click)="borrarTienda(borrachera.id)">Borrar</button>
         </div>
         <div class="col-sm-12">
-          <a [routerLink]="[tienda.id,'producto']">Ir a Productos</a>
+          <a [routerLink]="[borrachera.id,'producto']">Ir a Productos</a>
         </div>
       </div>
-      <div class="div" [hidden]="tienda.formularioCerrado">
-        <form class="animated bounceIn" (ngSubmit)="actualizarTienda(tienda)" #NuevaTiendaForm="ngForm">
+
+      <div class="div" [hidden]="borrachera.formularioCerrado">
+        <form class="animated bounceIn" (ngSubmit)="actualizarTienda(borrachera)" #NuevaTiendaForm="ngForm">
           <div class="form-group">
-            <label>Tienda</label>
-            <input required
-                   minlength="4"
-                   type="text"
-                   class="form-control"
-                   placeholder="Digite un nombre de tienda como: Adidas"
-                   name="nombre"
-                   [(ngModel)]="tienda.nombre"
-                   #nombre="ngModel"
-                   #nombreElm>
+            <label>Motivo</label>
+            <!--<div class="animated slideInUp" [hidden]="!nombre.errors">-->
+            <!--<span style="font-size:40px" class="bg-primary" *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" >Ingrese un nombre minimo con 4 caracteres </span>-->
+            <!--</div>-->
+            <input required minlength="4" type="text" class="form-control" placeholder="Digite un nombre de tienda como: Adidas"
+                   name="motivo" [(ngModel)]="borrachera.motivo" #motivo="ngModel" #nombreElm>
+
+            <label>Latitud (Donde Empezo)</label>
+            <input type="number" class="form-control" placeholder="Ingrese Latitud donde Empezó" name="latitud" min="0" max="180"
+                   [(ngModel)]="borrachera.latitud">
+
+            <label>Longitud (Donde Empezo)</label>
+            <input type="number" class="form-control" placeholder="Ingrese Longitud donde Empezó" name="longitud" min="0" max="180"
+                   [(ngModel)]="borrachera.longitud">
           </div>
           <button [disabled]="disabledButtons.NuevaTiendaFormSubmitButton||!NuevaTiendaForm.valid" type="submit"
-                  class="btn btn-block btn-success">Update
+                  class="btn btn-block btn-success">Actualizar
           </button>
-          <button type="button" class="btn btn-block btn-warning" (click)="tienda.formularioCerrado = !tienda.formularioCerrado ">Cancelar
-          </button>
+          <button type="button" class="btn btn-block btn-warning" (click)="borrachera.formularioCerrado = !borrachera.formularioCerrado ">
+            Cancelar</button>
         </form>
       </div>
+
 
     </div>
   </div>
