@@ -3,34 +3,40 @@
 
     <div class="col-sm-12">
       <pre class="animated fadeInUp">
-        {{nuevaTienda | json}}
+        {{nuevaBorrachera | json}}
       </pre>
     </div>
 
     <div class="col-sm-6">
       <form class="animated bounceIn" (ngSubmit)="crearTienda(NuevaTiendaForm)" #NuevaTiendaForm="ngForm">
         <div class="form-group">
-          <label>Tienda</label>
+
+          <label>Motivo</label>
           <!--<div class="animated slideInUp" [hidden]="!nombre.errors">-->
           <!--<span style="font-size:40px" class="bg-primary" *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" >Ingrese un nombre minimo con 4 caracteres </span>-->
           <!--</div>-->
-          <input required
-                 minlength="4"
-                 type="text"
-                 class="form-control"
-                 placeholder="Digite un nombre de tienda como: Adidas"
-                 name="nombre"
-                 [(ngModel)]="nuevaTienda.nombre"
-                 #nombre="ngModel"
-                 #nombreElm>
+          <input required minlength="4" type="text" class="form-control" placeholder="Digite un nombre de tienda como: Adidas"
+                 name="motivo" [(ngModel)]="nuevaBorrachera.motivo" #nombre="ngModel" #nombreElm>
+
+          <label>Latitud (Donde Empezo)</label>
+          <input type="number" class="form-control" placeholder="Ingrese Latitud donde Empezó" name="latitud" min="0" max="90"
+                 [(ngModel)]="nuevaBorrachera.latitud">
+
+          <label>Longitud (Donde Empezo)</label>
+          <input type="number" class="form-control" placeholder="Ingrese Longitud donde Empezó" name="longitud" min="0" max="90"
+                 [(ngModel)]="nuevaBorrachera.longitud">
+
         </div>
         <button [disabled]="disabledButtons.NuevaTiendaFormSubmitButton||!NuevaTiendaForm.valid" type="submit"
-                class="btn btn-block btn-success">Crear
+                class="btn btn-block btn-success">Crear Borrachera
         </button>
       </form>
     </div>
+
     <div class="col-sm-6">
-      <h1>{{nuevaTienda.nombre}}</h1>
+      <h1>{{nuevaBorrachera.nombre}}</h1>
+      <h1>{{nuevaBorrachera.latitud}}</h1>
+      <h1>{{nuevaBorrachera.longitud}}</h1>
     </div>
     <!--<div class="col-sm-12">-->
     <!--<pre>-->

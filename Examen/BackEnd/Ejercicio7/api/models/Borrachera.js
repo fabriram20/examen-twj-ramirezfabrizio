@@ -22,7 +22,8 @@ module.exports = {
       type: 'integer',
       required: true
     },
-    //usuarios -> es el nombre en plural del modelo a relacionarse
+    //usuarioss
+    // -> es el nombre en plural del modelo a relacionarse
     usuarios: {
       // Collection -> Nombre del Modelo en Sails
       collection: 'Usuario',

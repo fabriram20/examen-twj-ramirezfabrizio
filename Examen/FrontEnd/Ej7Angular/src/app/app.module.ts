@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BorracheraComponent } from './borrachera/borrachera.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { HomeComponent } from './home/home.component';
+import {MasterUrlService} from "./Services/master-url.service";
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [
+    MasterUrlService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
