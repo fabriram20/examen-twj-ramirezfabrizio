@@ -25,7 +25,7 @@
       <!--</select>-->
 
       <label>Borrachera: </label>
-      <select class="form-control" name="idBorrachera" >
+      <select class="form-control" name="idBorrachera" [(ngModel)]="nuevoUsuario.idBorrachera">
       <option *ngFor="let borrachera of borracheras" value='{{borrachera.id}}'>
       {{borrachera.motivo}}
       </option>
@@ -64,22 +64,22 @@
         </div>
 
         <div class="div" [hidden]="usuario.formularioCerrado">
-          <form class="animated bounceIn" (ngSubmit)="actualizarUsuario(usuario)" #NuevaTiendaForm="ngForm">
+          <form class="animated bounceIn" (ngSubmit)="actualizarUsuario(NuevaTiendaForm)" #NuevaTiendaForm="ngForm">
             <div class="form-group">
 
               <label>Nombre de Usuario</label>
               <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre"
-                     [(ngModel)]="usuario.nombre">
+                     [(ngModel)]="nuevoUsuario.nombre">
               <label>Ciudad de Residencia</label>
               <input type="text" class="form-control" placeholder="Ingrese su ciudad de Residencia"
                      name="ciudadResidencia"
-                     [(ngModel)]="usuario.ciudadResidencia">
+                     [(ngModel)]="nuevoUsuario.ciudadResidencia">
               <label>Fecha de Nacimiento</label>
               <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento"
                      name="fechaNacimiento"
-                     [(ngModel)]="usuario.fechaNacimiento">
+                     [(ngModel)]="nuevoUsuario.fechaNacimiento">
               <label>Borrachera: </label>
-              <select class="form-control" name="idBorrachera" >
+              <select class="form-control" name="idBorrachera" [(ngModel)]="nuevoUsuario.idBorrachera">
                 <option *ngFor="let borrachera of borracheras" value='{{borrachera.id}}'>
                   {{borrachera.motivo}}
                 </option>
