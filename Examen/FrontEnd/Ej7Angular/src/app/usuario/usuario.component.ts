@@ -68,7 +68,7 @@ export class UsuarioComponent implements OnInit {
       fechaNacimiento:formulario.value.fechaNacimiento,
       idBorrachera:formulario.value.idBorrachera
     }
-    this._http.post(this._masterURL.url+'Usuario', usuario).subscribe(
+    this._http.post(this._masterURL.url+'Usuario', this.nuevoUsuario).subscribe(
       (res:Response)=>{
         this.usuarios.push(res.json());
         this.nuevoUsuario={};
